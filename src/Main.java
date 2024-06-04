@@ -1,7 +1,11 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import sparta.SampleUsers;
 import sparta.User;
 import sparta.enumtype.DiscountEvent;
+import sparta.enumtype.OrderStatus;
 import sparta.service.Coupon;
+import sparta.service.Order;
 import sparta.service.Product;
 
 import java.util.List;
@@ -9,19 +13,39 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         lambdaTest();
-        enumTest();
     }
 
-    private static void enumTest() {
+    @Test
+    public void enumTest() {
         final Coupon coupon = new Coupon("특가쿠폰", 5000);
         final Product product = new Product("아이폰135 Super Ultra Pro Max", 20_000_000);
 
         final int couponPrice = coupon.calcPrice(DiscountEvent.SUMMER);
         final int productPrice = product.calcPrice(DiscountEvent.WINTER);
 
-        System.out.println("couponPrice = " + couponPrice);
-        System.out.println("productPrice = " + productPrice);
+        Assertions.assertEquals(5500, couponPrice);
+        Assertions.assertEquals(16000000, productPrice);
+
     }
+
+    @Test
+    public void orderTest(){
+
+        final Order order1 = new Order("자동차", OrderStatus.주문접수);
+        Assertions.assertFalse(order1.isChangable(OrderStatus.배송완료));
+        Assertions.assertTrue(order1.isChangable(OrderStatus.상품발송));
+
+
+        final Order order2 = new Order("자동차", OrderStatus.구매결정);
+        Assertions.assertFalse(order2.isChangable(OrderStatus.상품주문));
+
+
+        final Order order3 = new Order("자동차", OrderStatus.교환);
+        Assertions.assertFalse(order3.isChangable(OrderStatus.구매결정));
+        Assertions.assertTrue(order3.isChangable(OrderStatus.재발송));
+
+    }
+
 
     private static void lambdaTest() {
         final SampleUsers users = new SampleUsers();
