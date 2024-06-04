@@ -8,9 +8,9 @@ public enum OrderStatus {
     주문취소(status -> false),
     상품발송(status -> status.name().equals("배송완료")),
     배송완료(status -> status.name().equals("교환") || status.name().equals("반품")),
-    교환(status -> status.name().equals("재배송")),
+    교환(status -> status.name().equals("재발송")),
     반품(status -> status.name().equals("환불")),
-    재배송(status -> false),
+    재발송(status -> false),
     환불(status -> false),
     구매결정(status -> false);
 
