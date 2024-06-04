@@ -11,7 +11,7 @@ public class Product {
         this.price = price;
     }
 
-    public int calcPrice(DiscountEvent event, int price) {
-        return price - event.clac(price);
+    public int calcPrice(DiscountEvent event) {
+        return this.price - event.clac(this.price);
     }
 }

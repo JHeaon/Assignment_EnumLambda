@@ -11,7 +11,7 @@ public class Coupon {
         this.couponPrice = couponPrice;
     }
 
-    public int calcPrice(DiscountEvent event, int price) {
-        return price + event.clac(price);
+    public int calcPrice(DiscountEvent event) {
+        return this.couponPrice + event.clac(this.couponPrice);
     }
 }
