@@ -14,7 +14,7 @@
 - Order 상태변경 체크를 위해 OrderStatus Enum값을 넘겨 name()을 통해 비교하는 식으로 구현
 
 
-- Coupon, Product에서 맡고 있었던 할인 정책을 DiscountEnvent Enum으로 분리 후 할인 정책을 계산하는 함수를 작성함으로써 책임의 분리가 잘 이루어졌다고 생각이 들었다.
+- Coupon, Product에서 맡고 있었던 할인 정책을 DiscountEnvent Enum으로 분리 후 할인 정책을 계산하는 함수를 작성함으로써 책임의 분리가 진행
 
 
 - Order 상태변경이 잘 이루어졌는지 확인하기 위해 Junit5을 이용해 테스트 구현
